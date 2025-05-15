@@ -1,0 +1,22 @@
+Example 1
+Prompt: -explain (semantic versioning)
+Response:
+Semantic versioning uses a version format of MAJOR.MINOR.PATCH (e.g., 1.2.3).
+- MAJOR: breaking changes
+- MINOR: new features without breaking existing ones
+- PATCH: bug fixes or minor tweaks
+The modifier ensures updates track impact logically.
+
+Example 3
+Prompt: -explain (token ratio)
+Response:
+The token ratio is OUTPUT tokens ÷ INPUT tokens.
+Used to gauge verbosity or compression in a response.
+Example: input = 50, output = 100 → ratio = 2.0
+
+Example 4
+Prompt: -explain (push script)
+Response:
+The push script stages changes, commits with a message, and syncs the repo.
+Automates version tracking and makes updates consistent.
+Good for repeatability and time saving.
