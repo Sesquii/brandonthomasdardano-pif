@@ -1,0 +1,17 @@
+PIF Modifier List
+=================
+
+-token
+Outputs token metrics as three numbers only: input tokens | output tokens | token ratio. No extra words. Only activates if included in the prompt.
+
+-appendmodifier
+When included, appends the list of currently active modifiers as labels to the end of the response. Otherwise, modifiers are silent.
+
+-concise
+Makes responses shorter and more compact than usual.
+
+-explain
+Takes parentheses text as input, compares with recent outputs, and returns a simplified, congruent assimilation of differences.
+
+-example<number>(prompt)
+Generates the specified number of concise examples related to the prompt inside parentheses.
