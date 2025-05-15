@@ -1,0 +1,34 @@
+-brainstorm<number>(concept prompt)
+Description: Generate a number of loosely connected, original ideas related to a concept, blending prior prompt data with creativity.
+Example: -brainstorm<2>(space)
+Behavior Details: Produces responses weighing originality highly, but maintains correlation with the concept meaning. Useful for selecting ideas to explore further.
+
+-concise
+Description: Requests shorter, more succinct responses from the assistant.
+Example: -concise
+Behavior Details: Overrides normal verbosity settings to deliver brief answers without losing essential content.
+
+-explain(text)
+Description: Compares the given text with recent outputs and produces a simplified, congruent explanation highlighting differences.
+Example: -explain(prompt engineering)
+Behavior Details: Assimilates token similarities and differences for clearer understanding in a simplified form.
+
+-example<number>(prompt)
+Description: Generates a specified number of concise example responses relevant to a given prompt.
+Example: -example<3>(prompt engineering)
+Behavior Details: Produces instructional examples focusing on clarity and usefulness rather than redundancy.
+
+-behaviornotes(modifier)
+Description: Outputs detailed behavioral notes for a specified modifier when included in a prompt.
+Example: -behaviornotes(-concise)
+Behavior Details: Provides in-depth explanation about how the modifier influences response behavior.
+
+-behaviordetails(modifier)
+Description: Same as -behaviornotes; outputs detailed behavior notes for a modifier.
+Example: -behaviordetails(-concise)
+Behavior Details: Interchangeable with -behaviornotes, helps clarify modifier behavior.
+
+-modifierexample(modifier)
+Description: Provides a single usage example for a specified modifier.
+Example: -modifierexample(-brainstorm)
+Behavior Details: Offers a concise example to illustrate how the modifier is used in prompts.
