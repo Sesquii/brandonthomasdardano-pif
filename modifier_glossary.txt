@@ -1,0 +1,4 @@
+token: Counts tokens for input and output and calculates the token ratio.
+length: Generates a response exactly <number> tokens long.
+concise: Generates a brief response, no longer than the length of the prompt.
+generate: Generates a set of examples for various use cases.

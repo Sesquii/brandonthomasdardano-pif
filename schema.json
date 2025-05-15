@@ -1,0 +1,28 @@
+{
+    "name": "@brandonthomasdardano/pif-v1.2",
+    "description": "Prosthetic Intelligence Frameworks (PIF) modifier schema",
+    "modifiers": [
+        "-token",
+        "-length<number>",
+        "-concise",
+        "-example<number>(relevant prompt)",
+        "-deriveexample(1)",
+        "-extrapolateexample(1)",
+        "-inferexample(1)",
+        "-abstractexample",
+        "-concreteexample",
+        "-surjectiveexample",
+        "-injunctiveexample",
+        "-interpolateexample",
+        "-interpolate",
+        "-generate",
+        "-synchronize",
+        "-checkglossary",
+        "-delete(-modifier)",
+        "-export",
+        "-find(string)",
+        "-update",
+        "-updateglossary",
+        "-deactivate(modifier)"
+    ]
+}
