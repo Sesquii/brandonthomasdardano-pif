@@ -97,4 +97,4 @@ Contact & Contribution
 
 Want to contribute modifiers, propose enhancements, or fork your own version?
 
-> Contact: [your preferred contact or GitHub profile]
+> Contact: dardanobrandon@gmail.com
