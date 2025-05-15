@@ -1,5 +1,7 @@
 # Modifier Schema - @brandonthomasdardano/pif-v1.2
 
+**Version:** v1.2
+
 ## Overview
 
 This document defines the set of prompt modifiers designed to customize AI outputs, including verbosity, token metrics, and modifier management commands.
