@@ -1,34 +1,95 @@
--brainstorm<number>(concept prompt)
-Description: Generate a number of loosely connected, original ideas related to a concept, blending prior prompt data with creativity.
-Example: -brainstorm<2>(space)
-Behavior Details: Produces responses weighing originality highly, but maintains correlation with the concept meaning. Useful for selecting ideas to explore further.
+Modifiers Glossary
+-token
+Description: Outputs token usage as three numbers (input tokens | output tokens | token ratio).
+Example: -token → 45|120|2.67
+Behavior Notes: Only outputs numeric token info when included in prompt; no text appended.
+
+-appendmodifier
+Description: Controls whether modifier labels appear appended at the end of responses.
+Example: -appendmodifier used → modifier labels appear; omitted → no labels appended.
+Behavior Notes: Default is no appended labels unless this modifier is included.
 
 -concise
-Description: Requests shorter, more succinct responses from the assistant.
-Example: -concise
-Behavior Details: Overrides normal verbosity settings to deliver brief answers without losing essential content.
+Description: Requests shorter, more compact responses from the model.
+Example: -concise → “Short answer.”
+Behavior Notes: Overrides default verbosity without needing verbose phrasing.
 
--explain(text)
-Description: Compares the given text with recent outputs and produces a simplified, congruent explanation highlighting differences.
-Example: -explain(prompt engineering)
-Behavior Details: Assimilates token similarities and differences for clearer understanding in a simplified form.
+-explain
+Description: Compares text in parentheses with recent outputs, assimilates differences, and generates a simplified explanation.
+Example: -explain(syntax trees) → Simplified explanation about syntax trees based on conversation history.
+Behavior Notes: Useful for quick clarifications and digesting complex info.
 
 -example<number>(prompt)
-Description: Generates a specified number of concise example responses relevant to a given prompt.
-Example: -example<3>(prompt engineering)
-Behavior Details: Produces instructional examples focusing on clarity and usefulness rather than redundancy.
+Description: Generates the specified number of examples related to the prompt.
+Example: -example<3>(prompt engineering) → 3 prompt engineering examples.
+Behavior Notes: Focuses on diverse, relevant examples with minimal redundancy.
 
--behaviornotes(modifier)
-Description: Outputs detailed behavioral notes for a specified modifier when included in a prompt.
-Example: -behaviornotes(-concise)
-Behavior Details: Provides in-depth explanation about how the modifier influences response behavior.
+-brainstorm<number>(concept prompt)
+Description: Generates multiple correlated, original idea prompts inspired by prior conversations, prioritizing originality over complexity.
+Example: -brainstorm<2>(space) → 2 unique space-related brainstorming prompts.
+Behavior Notes: Intended for creative ideation sessions.
 
--behaviordetails(modifier)
-Description: Same as -behaviornotes; outputs detailed behavior notes for a modifier.
-Example: -behaviordetails(-concise)
-Behavior Details: Interchangeable with -behaviornotes, helps clarify modifier behavior.
+-behaviornotes(modifier) / -behaviordetails(modifier)
+Description: Outputs detailed behavior notes about the specified modifier on prompt request.
+Example: -behaviornotes(-concise) → Explanation of how -concise works.
+Behavior Notes: Does NOT appear in the schema file; only on request.
 
 -modifierexample(modifier)
-Description: Provides a single usage example for a specified modifier.
-Example: -modifierexample(-brainstorm)
-Behavior Details: Offers a concise example to illustrate how the modifier is used in prompts.
+Description: Outputs a single usage example of the specified modifier on prompt request.
+Example: -modifierexample(-token) → Shows how to use -token.
+Behavior Notes: Example is omitted from the schema file.
+
+-generate
+Description: Produces a set of three example types: derived, extrapolated, and inferred.
+Example: -generate(prompt engineering) → Generates three varied examples.
+Behavior Notes: Automatically combines -deriveexample, -extrapolateexample, and -inferexample.
+
+-deriveexample
+Description: Produces an example derived directly from a prompt.
+Example: -deriveexample(prompt engineering) → An example closely based on prompt engineering.
+Behavior Notes: Focused on clear, direct derivation.
+
+-extrapolateexample
+Description: Generates an example that extrapolates or extends the original prompt concept.
+Example: -extrapolateexample(prompt engineering) → An extended or futuristic example.
+Behavior Notes: Explores ideas beyond the literal prompt.
+
+-inferexample
+Description: Creates an inferred example based on implicit understanding of the prompt.
+Example: -inferexample(prompt engineering) → Implied or less obvious example.
+Behavior Notes: Adds depth through inference.
+
+-abstractexample
+Description: Produces a highly generalized or conceptual example.
+Example: -abstractexample(prompt engineering) → Abstracted concepts related to prompt engineering.
+Behavior Notes: Emphasizes generalization.
+
+-concreteexample
+Description: Produces a specific, tangible example.
+Example: -concreteexample(prompt engineering) → A detailed, real-world example.
+Behavior Notes: Emphasizes specificity.
+
+-surjectiveexample
+Description: Generates examples showing many-to-one mappings in concepts.
+Example: -surjectiveexample(prompt engineering) → Multiple inputs mapping to a single concept.
+Behavior Notes: Explores conceptual mappings.
+
+-injunctiveexample
+Description: Provides prescriptive or instructive examples implying action.
+Example: -injunctiveexample(prompt engineering) → Instructions or commands related to prompt engineering.
+Behavior Notes: Focuses on practical directives.
+
+-interpolateexample
+Description: Generates examples interpolating between known examples.
+Example: -interpolateexample(prompt engineering) → An example blending multiple known ideas.
+Behavior Notes: Connects dots between concepts.
+
+-update
+Description: Modifier to trigger an update of the schema file from the model.
+Example: -update → Updates modifierschema.md with current definitions.
+Behavior Notes: Intended for manual or scripted schema sync.
+
+-updateglossary
+Description: Modifier to generate a comprehensive text glossary file of all modifiers.
+Example: -updateglossary → Produces latest full glossary for manual upload.
+Behavior Notes: Useful for external review or backups.
