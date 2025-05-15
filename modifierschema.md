@@ -20,3 +20,5 @@ Specifically displays the current list of prompt modifiers without modifying or 
 ### -modify (codified)
 Allows modification of existing prompt modifiers by codified syntax in the prompt, e.g.:
 
+
+-newmod: this is my new modifier behavior
