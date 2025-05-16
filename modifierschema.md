@@ -1,119 +1,83 @@
-# Modifier Schema for PIF v1.2
+Modifier Schema
 
-This document lists all active prompt modifiers in the Prosthetic Intelligence Framework (PIF), including descriptions, behavior notes, and usage examples.
+Current List of Modifiers
 
----
+General Modifiers
 
-## -token
-**Description:** Outputs only three numbers separated by `|` representing input tokens, output tokens, and token ratio when included in a prompt.  
-**Behavior Notes:** Suppresses all other text in response except those three numbers.  
-**Example:**  
-Prompt: `Explain quantum computing -token`  
-Response: `120|80|0.66`
+-token: Displays input tokens, output tokens, and token ratio in the format: input | output | ratio.
 
----
+-listmodifiers: Lists all active modifiers.
 
-## -appendmodifier  
-**Description:** Enables appending modifier labels to the end of responses. Disabled by default.  
-**Behavior Notes:** Only appends labels if this modifier is active.  
-**Example:**  
-Prompt: `Summarize AI progress -appendmodifier`  
-Response ends with `[ -appendmodifier ]`
+-modify: Allows inline modification of any existing modifier.
 
----
+-combine: Merges two or more text inputs into a single, logically consistent output.
 
-## -concise  
-**Description:** Requests a shorter, more compact response length.  
-**Behavior Notes:** Overrides default verbose style to produce brief, direct answers.  
-**Example:**  
-Prompt: `Explain recursion -concise`  
-Response: `Recursion is a function calling itself.`
+-separate(number): Separates text into a specified number of distinct points.
 
----
+Export and Update Modifiers
 
-## -explain  
-**Description:** Compares text inside parentheses with recent outputs, then generates a congruent simplified assimilation of the difference.  
-**Behavior Notes:** Analyzes token similarity and synthesizes simplified explanation.  
-**Example:**  
-Prompt: `-explain(recursion)`  
-Response: `Recursion means a function calling itself repeatedly until a condition is met.`
+-export: Exports the schema and glossary as JSON files.
 
----
+-exportschema: Exports the schema as a JSON file.
 
-## -example<number>(prompt)  
-**Description:** Generates `<number>` examples related to the prompt topic.  
-**Behavior Notes:** Produces concrete, instructional examples without redundancy.  
-**Example:**  
-Prompt: `-example3(prompt engineering)`  
-Response: Three concise prompt engineering examples.
+-exportcontext: Exports the context as a JSON file.
 
----
+-exportglossary: Exports the glossary as a JSON file.
 
-## -behaviornotes(modifier) / -behaviordetails(modifier)  
-**Description:** Outputs detailed behavior notes for the specified modifier.  
-**Behavior Notes:** Useful for reviewing modifier behaviors without cluttering the main schema.  
-**Example:**  
-Prompt: `-behaviornotes(-token)`  
-Response: Explains that `-token` outputs only token counts and ratio.
+-exportupdatelog: Exports the update log as a text file.
 
----
+-update: Updates the current schema.
 
-## -modifierexample(modifier)  
-**Description:** Provides a single example usage case for the specified modifier.  
-**Behavior Notes:** Keeps examples separate from schema file, reducing size and clutter.  
-**Example:**  
-Prompt: `-modifierexample(-concise)`  
-Response: `Explain recursion -concise`
+-updateall: Synchronizes and updates all components of the schema.
 
----
+Analysis Modifiers
 
-## -generate  
-**Description:** Generates three example types related to a prompt: derived, extrapolated, and inferred.  
-**Behavior Notes:** Combines different example generation strategies automatically.  
-**Example:**  
-Prompt: `-generate(prompt engineering)`  
-Response: Three different example types for prompt engineering.
+-createanalysis: Creates a detailed analysis of a given topic.
 
----
+-displayanalysis: Displays an analysis in a user-friendly format.
 
-## -abstractexample  
-**Description:** Generates an abstract/generalized example for a prompt.  
-**Behavior Notes:** Focuses on conceptual, non-specific instances.  
-**Example:**  
-Prompt: `-abstractexample(communication)`  
-Response: An example discussing the general nature of communication.
+-compare: Compares two or more concepts and generates an analysis.
 
----
+Algorithm Modifiers
 
-## -concreteexample  
-**Description:** Generates a specific, tangible example for a prompt.  
-**Behavior Notes:** Emphasizes real-world or precise scenarios.  
-**Example:**  
-Prompt: `-concreteexample(metaphor)`  
-Response: A specific metaphor example like "Time is a thief."
+-algorithm(ccg): Combinatory Creation Generation - Combines selected prompts, analyzes them, and generates new ideas.
 
----
+-algorithm(ncsa): Nested Context Synergy Association - Generates insights by exploring context associations.
 
-## -surjectiveexample  
-**Description:** Produces an example mapping multiple inputs to a single conceptual output.  
-**Behavior Notes:** Shows examples of broad input mapping.  
-**Example:**  
-Prompt: `-surjectiveexample(causality)`  
-Response: Multiple causes leading to a single effect example.
+-algorithm(lfa): Looping Feedback Algorithm - Optimizes outputs through iterative feedback.
 
----
+-algorithm(mmg): Modifier Matrix Generation - Creates structured outputs using a matrix of modifiers.
 
-## -injunctiveexample  
-**Description:** Generates a prescriptive example implying action or behavior.  
-**Behavior Notes:** Useful for illustrating recommended or mandated actions.  
-**Example:**  
-Prompt: `-injunctiveexample(productivity)`  
-Response: Advice like "Focus on one task at a time to improve productivity."
+-algorithm(random): Runs a random algorithm from the list and generates an output of 2500 tokens.
 
----
+Content Generation Modifiers
 
-## -interpolateexample  
-**Description:** Creates an example by interpolating between known examples.  
-**Behavior Notes:** Blends characteristics of two or more examples into a new intermediate example.  
-**Example:**  
-Prompt: `-interpolateexample
+-story(number): Generates a story using NCSA + LFA + MMG algorithms, with the specified number of pages.
+
+-lyrics(number): Generates song lyrics using NCSA + LFA + MMG algorithms, with the specified number of verses.
+
+-poem(number): Generates a poem using NCSA + LFA + MMG algorithms, with the specified number of stanzas.
+
+Consolidation Modifiers
+
+-consolidate(number): Adjusts an output to the specified number of tokens.
+
+-consolidatestory(number): Adjusts a story's length to the specified number of pages.
+
+-consolidatelyrics(number): Adjusts song lyrics to the specified number of verses.
+
+-consolidatepoem(number): Adjusts a poem to the specified number of stanzas.
+
+Utility Modifiers
+
+-find(string): Finds modifiers containing the specified string.
+
+-checkglossary: Displays differences between the glossary and schema.
+
+-cleanupcontext: Cross-references the modifiers in context with the schema and deletes unused ones.
+
+-delete(-modifier): Deletes a specified modifier from the schema and glossary.
+
+-test: Adds a test case for a modifier without adding it to the schema.
+
+This schema is fully updated as of May 16, 2025.
