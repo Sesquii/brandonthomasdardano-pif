@@ -1,23 +1,2 @@
-{
-"glossary_name": "@brandonthomasdardano/pif-v1.2_glossary",
-"modifiers": {
-"-token": "Provides input, output, and token ratio for any prompt.",
-"-listmodifiers": "Lists all modifiers in the schema.",
-"-combine": "Merges two or more text inputs into a single coherent output.",
-"-separate(number)": "Separates text into a specified number of distinct points.",
-"-clarify": "Generates a clarified version of a response using -combine.",
-"-milestones(query)": "Lists the 10 most important PIF milestones related to the query.",
-"-find(string)": "Searches for modifiers containing the specified text.",
-"-createanalysis": "Generates an analysis based on a specified query.",
-"-displayanalysis": "Displays an existing analysis.",
-"-compare(concept1, concept2, query)": "Compares two concepts based on a query.",
-"-generate": "Generates an idea for a modifier.",
-"-update": "Updates the schema.",
-"-updateglossary": "Updates and generates a text file for the glossary.",
-"-export": "Exports the schema and glossary as files.",
-"-cleanupcontext": "Cross-references the context file and deletes unused entries.",
-"-checkglossary": "Checks for differences between the schema and glossary.",
-"-delete(-modifier)": "Deletes a specified modifier from the schema and glossary."
-},
-"description": "This JSON file defines the current glossary of modifiers with their explanations."
-}
+{"glossary":[{"modifier":"-token","definition":"Generates a response and token count in the format input|output|ratio without extra text."},{"modifier":"-listmodifiers","definition":"Lists all active custom modifiers in the schema."},{"modifier":"-update","definition":"Synchronizes the schema with the latest changes."},{"modifier":"-export","definition":"Exports the current schema and glossary as JSON files."},{"modifier":"-exportschema","definition":"Exports the schema as a JSON file."},{"modifier":"-exportcontext","definition":"Exports the context as a JSON file."},{"modifier":"-exportglossary","definition":"Exports the glossary as a JSON file."},{"modifier":"-exportupdatelog","definition":"Exports the update log as a text file."},{"modifier":"-algorithm(ccg)","definition":"Combinatory Creation Generation algorithm for complex analysis and idea generation."},{"modifier":"-algorithm(ncsa)","definition":"Nested Context Synergy Association for layered context creation."},{"modifier":"-algorithm(lfa)","definition":"Looping Feedback Algorithm for iterative improvement."},{"modifier":"-algorithm(mmg)","definition":"Modifier Matrix Generation for structured output optimization."},{"modifier":"-algorithm(random)","definition":"Randomly applies one of the defined algorithms."}]}
+

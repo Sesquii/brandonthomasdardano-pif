@@ -1,23 +1,2 @@
-{
-"context\_name": "@brandonthomasdardano/pif-v1.2\_context",
-"modifiers": {
-"-token": "Created to provide precise token counts for prompts.",
-"-listmodifiers": "Added to quickly view all available modifiers.",
-"-combine": "Introduced to merge multiple text inputs into a unified output.",
-"-separate(number)": "Developed to separate text into a specified number of points, ensuring clarity.",
-"-clarify": "Enhanced to use -combine for generating clarified outputs.",
-"-milestones(query)": "Designed to list important milestones for PIF evolution.",
-"-find(string)": "Created for quick searches of modifiers containing specific text.",
-"-createanalysis": "Introduced for generating detailed analysis based on a query.",
-"-displayanalysis": "Paired with -createanalysis to display generated analysis.",
-"-compare(concept1, concept2, query)": "Added to enable direct concept comparisons.",
-"-generate": "Provides a method for generating new modifier ideas.",
-"-update": "Ensures the schema is always up to date.",
-"-updateglossary": "Synchronizes the glossary with the schema.",
-"-export": "Allows easy export of the schema and glossary.",
-"-cleanupcontext": "Maintains clean and accurate context data.",
-"-checkglossary": "Checks for differences between the glossary and schema.",
-"-delete(-modifier)": "Enables deletion of specified modifiers, including context cleanup."
-},
-"description": "This JSON file defines the context and history of each modifier in the PIF."
-}
+{"context":[{"modifier":"-token","context":"Designed for rapid token calculation without extra text, optimized for efficient token analysis."},{"modifier":"-listmodifiers","context":"Created to list all active modifiers for easy reference and management."},{"modifier":"-update","context":"Ensures the schema remains synchronized with the latest changes, preventing outdated information."},{"modifier":"-export","context":"Allows exporting the schema and glossary for external use or backup."},{"modifier":"-exportschema","context":"Dedicated schema export for focused version control."},{"modifier":"-exportcontext","context":"Exports the context details for modifiers as a JSON file."},{"modifier":"-exportglossary","context":"Allows for glossary export independently of the schema."},{"modifier":"-exportupdatelog","context":"Maintains a text log of all schema and modifier updates."},{"modifier":"-algorithm(ccg)","context":"Supports complex prompt analysis and creative idea generation through combinatory creation."},{"modifier":"-algorithm(ncsa)","context":"Designed for nested context synergy, enabling complex context layering."},{"modifier":"-algorithm(lfa)","context":"Optimized for iterative improvement through feedback loops."},{"modifier":"-algorithm(mmg)","context":"Generates optimized outputs using a matrix of modifiers for advanced control."},{"modifier":"-algorithm(random)","context":"Provides flexibility by randomly applying one of the defined algorithms."}]}
+
