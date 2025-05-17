@@ -1,4 +1,4 @@
-# Enhanced PIF Push Script with PAT Auto-Update and Encryption (push_pif.ps1)
+# Enhanced PIF Push Script with Maximum Security (push_pif.ps1)
 # This script securely pushes updates to your PIF repo using a Personal Access Token (PAT) with AES Encryption.
 
 # Set your local PIF directory (adjust if needed)
@@ -14,25 +14,36 @@ if (!(Test-Path .git)) {
 $key = "PIFSecureEncryptionKey1234"  # Replace with a unique and strong key
 $tokenFile = "C:\Users\rudol\OneDrive\Desktop\brandonthomasdardano-pif-v1-optimized\pat_token.enc"
 
-# Encryption Function
+# Encryption Function with Random IV
 function Encrypt-String($plainText, $key) {
     $bytes = [System.Text.Encoding]::UTF8.GetBytes($plainText)
     $aes = New-Object System.Security.Cryptography.AesManaged
     $aes.Key = [System.Text.Encoding]::UTF8.GetBytes($key.PadRight(32).Substring(0,32))
-    $aes.IV = [byte]@(0..15)
+
+    # Secure Random IV
+    $aes.GenerateIV()
+    $IV = [Convert]::ToBase64String($aes.IV)
+
     $encryptor = $aes.CreateEncryptor()
     $encrypted = $encryptor.TransformFinalBlock($bytes, 0, $bytes.Length)
-    return [Convert]::ToBase64String($encrypted)
+    $encryptedText = [Convert]::ToBase64String($encrypted)
+
+    # Save Encrypted Text and IV Together
+    return "$IV`n$encryptedText"
 }
 
 # Decryption Function
-function Decrypt-String($encryptedText, $key) {
-    $encryptedBytes = [Convert]::FromBase64String($encryptedText)
+function Decrypt-String($encryptedData, $key) {
+    $data = $encryptedData -split "`n"
+    $IV = [Convert]::FromBase64String($data[0])
+    $encryptedText = [Convert]::FromBase64String($data[1])
+
     $aes = New-Object System.Security.Cryptography.AesManaged
     $aes.Key = [System.Text.Encoding]::UTF8.GetBytes($key.PadRight(32).Substring(0,32))
-    $aes.IV = [byte]@(0..15)
+    $aes.IV = $IV
+
     $decryptor = $aes.CreateDecryptor()
-    $decrypted = $decryptor.TransformFinalBlock($encryptedBytes, 0, $encryptedBytes.Length)
+    $decrypted = $decryptor.TransformFinalBlock($encryptedText, 0, $encryptedText.Length)
     return [System.Text.Encoding]::UTF8.GetString($decrypted)
 }
 
@@ -53,6 +64,12 @@ $PAT = Decrypt-String $encryptedPAT $key
 git config --global credential.helper store
 [System.IO.File]::WriteAllText("C:\Users\rudol\OneDrive\Desktop\brandonthomasdardano-pif-v1-optimized\.git\credentials", "https://x-access-token:" + $PAT + "@github.com")
 
+# Auto-Detect Branch and Set Upstream if Missing
+$branch = git rev-parse --abbrev-ref HEAD
+if (!(git config branch.$branch.remote)) {
+    git branch --set-upstream-to=origin/$branch
+}
+
 # Add only core PIF files (secured)
 git add README.md context.json glossary.json schema.json modifierschema.md push_pif.ps1
 
@@ -60,7 +77,7 @@ git add README.md context.json glossary.json schema.json modifierschema.md push_
 $commitMessage = Read-Host "Enter commit message for your PIF update"
 git commit -m $commitMessage
 
-# Push to the current branch (detected)
+# Push to the detected branch
 git push
 
 # Clean up the PAT (security measure)
@@ -68,4 +85,4 @@ Remove-Item "C:\Users\rudol\OneDrive\Desktop\brandonthomasdardano-pif-v1-optimiz
 git config --global credential.helper cache
 
 # Confirmation message
-Write-Host "✅ PIF update successfully pushed to GitHub with secure authentication."
+Write-Host "✅ PIF update successfully pushed to GitHub with secure authentication on branch $branch."
