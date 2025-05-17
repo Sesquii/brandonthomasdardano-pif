@@ -14,22 +14,25 @@ if (!(Test-Path .git)) {
 $key = "PIFSecureEncryptionKey1234"  # Replace with a unique and strong key
 $tokenFile = "C:\Users\rudol\OneDrive\Desktop\brandonthomasdardano-pif-v1-optimized\pat_token.enc"
 
-# Encryption Function with Random IV
+# Encryption Function with Secure 16-Byte IV
 function Encrypt-String($plainText, $key) {
     $bytes = [System.Text.Encoding]::UTF8.GetBytes($plainText)
     $aes = New-Object System.Security.Cryptography.AesManaged
     $aes.Key = [System.Text.Encoding]::UTF8.GetBytes($key.PadRight(32).Substring(0,32))
 
-    # Secure Random IV
-    $aes.GenerateIV()
-    $IV = [Convert]::ToBase64String($aes.IV)
+    # Secure Random 16-Byte IV
+    $IV = New-Object byte[] 16
+    [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($IV)
 
+    $aes.IV = $IV
     $encryptor = $aes.CreateEncryptor()
     $encrypted = $encryptor.TransformFinalBlock($bytes, 0, $bytes.Length)
-    $encryptedText = [Convert]::ToBase64String($encrypted)
 
     # Save Encrypted Text and IV Together
-    return "$IV`n$encryptedText"
+    $encryptedText = [Convert]::ToBase64String($encrypted)
+    $ivBase64 = [Convert]::ToBase64String($IV)
+
+    return "$ivBase64`n$encryptedText"
 }
 
 # Decryption Function
