@@ -1,0 +1,23 @@
+# Ignore encryption keys and sensitive tokens
+encryption_key.enc
+pat_token.enc
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temp files
+*.log
+*.tmp
+
+# Ignore Python caches (if you use Python)
+__pycache__/
+*.py[cod]
+
+# Ignore node_modules if applicable
+node_modules/
+
+# Ignore archive folders if you don't want to version control them
+Archive/
+
+# Ignore any other folders or files you want to exclude
