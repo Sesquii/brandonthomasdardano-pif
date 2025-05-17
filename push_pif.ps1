@@ -1,4 +1,4 @@
-# Enhanced PIF Push Script with Maximum Security (push_pif.ps1)
+# Enhanced PIF Push Script with Maximum Security and Dynamic Encryption Key (push_pif.ps1)
 # This script securely pushes updates to your PIF repo using a Personal Access Token (PAT) with AES Encryption.
 
 # Set your local PIF directory (adjust if needed)
@@ -11,20 +11,28 @@ if (!(Test-Path .git)) {
 }
 
 # Encryption/Decryption Keys
-$key = "PIFSecureEncryptionKey1234"  # Replace with a unique and strong key
+$keyFile = "C:\Users\rudol\OneDrive\Desktop\brandonthomasdardano-pif-v1-optimized\encryption_key.enc"
 $tokenFile = "C:\Users\rudol\OneDrive\Desktop\brandonthomasdardano-pif-v1-optimized\pat_token.enc"
+
+# Generate a Strong Random Encryption Key if Not Already Created
+if (!(Test-Path $keyFile)) {
+    $key = [System.Convert]::ToBase64String((1..32 | ForEach-Object {Get-Random -Minimum 0 -Maximum 255}))
+    Set-Content $keyFile $key
+} else {
+    $key = Get-Content $keyFile
+}
 
 # Encryption Function with Secure 16-Byte IV
 function Encrypt-String($plainText, $key) {
     $bytes = [System.Text.Encoding]::UTF8.GetBytes($plainText)
     $aes = New-Object System.Security.Cryptography.AesManaged
-    $aes.Key = [System.Text.Encoding]::UTF8.GetBytes($key.PadRight(32).Substring(0,32))
+    $aes.Key = [Convert]::FromBase64String($key)
 
     # Secure Random 16-Byte IV
     $IV = New-Object byte[] 16
     [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($IV)
 
-    $aes.IV = $IV[0..15] # Ensure IV is exactly 16 bytes
+    $aes.IV = $IV
     $encryptor = $aes.CreateEncryptor()
     $encrypted = $encryptor.TransformFinalBlock($bytes, 0, $bytes.Length)
 
@@ -42,8 +50,8 @@ function Decrypt-String($encryptedData, $key) {
     $encryptedText = [Convert]::FromBase64String($data[1])
 
     $aes = New-Object System.Security.Cryptography.AesManaged
-    $aes.Key = [System.Text.Encoding]::UTF8.GetBytes($key.PadRight(32).Substring(0,32))
-    $aes.IV = $IV[0..15] # Ensure IV is exactly 16 bytes
+    $aes.Key = [Convert]::FromBase64String($key)
+    $aes.IV = $IV
 
     $decryptor = $aes.CreateDecryptor()
     $decrypted = $decryptor.TransformFinalBlock($encryptedText, 0, $encryptedText.Length)
