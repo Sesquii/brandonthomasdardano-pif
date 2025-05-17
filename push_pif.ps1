@@ -32,7 +32,7 @@ function Encrypt-String($plainText, $key) {
     $IV = New-Object byte[] 16
     [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($IV)
 
-    $aes.IV = $IV
+    $aes.IV = $IV[0..15] # Ensure IV is exactly 16 bytes
     $encryptor = $aes.CreateEncryptor()
     $encrypted = $encryptor.TransformFinalBlock($bytes, 0, $bytes.Length)
 
@@ -51,7 +51,7 @@ function Decrypt-String($encryptedData, $key) {
 
     $aes = New-Object System.Security.Cryptography.AesManaged
     $aes.Key = [Convert]::FromBase64String($key)
-    $aes.IV = $IV
+    $aes.IV = $IV[0..15] # Ensure IV is exactly 16 bytes
 
     $decryptor = $aes.CreateDecryptor()
     $decrypted = $decryptor.TransformFinalBlock($encryptedText, 0, $encryptedText.Length)
